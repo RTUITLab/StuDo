@@ -1,0 +1,38 @@
+version: "3.8"
+
+services:
+  back:
+    build: StuDo-Back/Deploy
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__PostgreSQL: User ID=postgres;Password=password;Server=postgres;Port=5432;Database=studo-dev-db;Application Name=StuDoDockerOverride
+    ports:
+      - 5301:5301
+
+  front:
+    build: StuDo-Front
+    ports:
+      - 5302:5302
+  
+  postgres:
+    image: postgres:13-alpine
+    environment:
+      POSTGRES_PASSWORD: password
+    ports:
+    - 5432:5432
+    restart: on-failure
+    volumes:
+    - ./devdata/postgres/:/var/lib/postgresql/data
+    depends_on:
+    - pgadmin
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: on-failure
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@studo.ru
+      PGADMIN_DEFAULT_PASSWORD: password
+      PGADMIN_LISTEN_PORT: 80
+    ports:
+    - 8080:80
+    volumes:
+    - ./devdata/pgadmin/:/var/lib/pgadmin

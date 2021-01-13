@@ -1,0 +1,6 @@
+[submodule "StuDo-Back"]
+	path = StuDo-Back
+	url = https://github.com/RTUITLab/StuDo-Back.git
+[submodule "StuDo-Front"]
+	path = StuDo-Front
+	url = https://github.com/RTUITLab/StuDo-Front.git

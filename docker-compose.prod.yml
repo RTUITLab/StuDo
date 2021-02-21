@@ -1,0 +1,66 @@
+version: "3.8"
+
+services:
+  back:
+    networks:
+      - net
+    environment:
+      ConnectionStrings__PostgreSQL:  ${POSTGRES_CONNECTION_STRING?Provide POSTGRES_CONNECTION_STRING connection string in .env POSTGRES_CONNECTION_STRING}
+
+      
+      LogsOptions__SecretKey: ${LOGSOPTIONS__SECRETKEY?Provide secret key for logs string in .env LOGSOPTIONS__SECRETKEY}
+
+      FILL_DB: 'true'
+      MIGRATE: 'true'
+      USE_DEBUG_EMAIL_SENDER: 'true'
+
+      FillDbOptions__Firstname: ${DB_FIRSTNAME?Provide default user firstname in .env DB_FIRSTNAME}
+      FillDbOptions__Surname: ${DB_SURNAME?Provide default user surname in .env DB_SURNAME}
+      FillDbOptions__Email: ${DB_EMAIL?Provide default user email in .env DB_EMAIL}
+      FillDbOptions__Password: ${DB_PASSWORD?Provide default user password in .env DB_PASSWORD}
+
+      JwtOptions__SecretKey: ${JWT_SECRET?Provide secret key for jwt in .env JWT_SECRET}
+      JwtOptions__Audience: ${JWT_AUDIENCE?Provide audience for jwt in .env JWT_AUDIENCE}
+      JwtOptions__Issuer: ${JWT_ISSUER?Provide issuer for jwt in .env JWT_ISSUER}
+      JwtOptions__RefreshTokenLifeTime: '10:00:00'
+      JwtOptions__AccessTokenLifeTime: '00:05:00'
+
+    deploy:
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 250M
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+  front:
+    networks:
+      - net
+    deploy:
+      resources:
+        limits:
+          cpus: '0.30'
+          memory: 100M
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+  proxy:
+    networks:
+      - net
+    deploy:
+      resources:
+        limits:
+          cpus: '0.30'
+          memory: 50M
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+networks:
+  net:
+    driver: overlay

@@ -1,2 +1,6 @@
 
 devdata/
+
+.env
+
+stack.yml

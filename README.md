@@ -40,3 +40,17 @@ docker-compose build
 ```bash
 docker-compose up -d
 ```
+
+## Deploy
+
+### Create ".env" file
+### Fill it with the next content:
+```env
+POSTGRES_CONNECTION_STRING=provide your postgres connection string
+```
+
+### Run this command to generate docker swarm stack file:
+```bash
+# powershell
+.\generateStackYml.ps1
+```

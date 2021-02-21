@@ -5,3 +5,5 @@ services:
     image: rtuitlab/studo-back
   front:
     image: rtuitlab/studo-front
+  proxy:
+    image: rtuitlab/studo-proxy

@@ -7,7 +7,6 @@ services:
     environment:
       ConnectionStrings__PostgreSQL:  ${POSTGRES_CONNECTION_STRING?Provide POSTGRES_CONNECTION_STRING connection string in .env POSTGRES_CONNECTION_STRING}
 
-      
       LogsOptions__SecretKey: ${LOGSOPTIONS__SECRETKEY?Provide secret key for logs string in .env LOGSOPTIONS__SECRETKEY}
 
       FILL_DB: 'true'

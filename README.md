@@ -46,7 +46,17 @@ docker-compose up -d
 ### Create ".env" file
 ### Fill it with the next content:
 ```env
-POSTGRES_CONNECTION_STRING=provide your postgres connection string
+POSTGRES_CONNECTION_STRING=your postgres connection string
+LOGSOPTIONS__SECRETKEY=random_super_puper
+
+DB_FIRSTNAME=default user firstname
+DB_SURNAME=default user surname
+DB_EMAIL=default user email
+DB_PASSWORD=default user password
+
+JWT_SECRET=secret key for jwt
+JWT_AUDIENCE=audience for jwt
+JWT_ISSUER=issuer for jwt
 ```
 
 ### Run this command to generate docker swarm stack file:

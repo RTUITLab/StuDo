@@ -1,0 +1,52 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+name: $(BuildID)-$(Build.SourceBranchName)
+
+variables:
+  buildImage: true
+  deployService: true
+  deployEnvironment: production
+  imageTags: |
+    $(Build.BuildId)
+    latest
+  serviceName: studo_proxy
+
+stages:
+- stage: Build
+  condition: ${{variables.buildImage}}
+  displayName: Build image
+  jobs:
+  - job: Build
+    displayName: Build
+    steps:
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'rtuitlab connection by admin'
+        repository: 'rtutitlab/studo-proxy'
+        command: 'buildAndPush'
+        Dockerfile: './Proxy/Dockerfile'
+        buildContext: './Proxy'
+        tags: ${{variables.imageTags}}
+- stage: Deploy
+  condition: ${{variables.deployService}}
+  jobs:
+    - deployment: DeployProxy
+      displayName: Deploy Proxy
+      pool:
+        vmImage: 'ubuntu-latest'
+      environment: ${{variables.deployEnvironment}}
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+              - download: none
+              - task: SSH@0
+                inputs:
+                  sshEndpoint: 'swarm manager'
+                  runOptions: 'commands'
+                  commands: 'docker service update --image rtuitlab/studo-proxy:$(Build.BuildId) ${{variables.serviceName}}'
+                  readyTimeout: '20000'

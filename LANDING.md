@@ -12,7 +12,6 @@ StuDo
 * ![](https://files.rtuitlab.ru/landing_src/studo/1.png)
 * ![](https://files.rtuitlab.ru/landing_src/studo/2.png)
 * ![](https://files.rtuitlab.ru/landing_src/studo/3.png)
-* ![](https://files.rtuitlab.ru/landing_src/studo/4.png)
 ---
 
 # Videos
@@ -34,6 +33,7 @@ StuDo
 * Цуканов Д. М.
 * Яковлев А. А.
 * Алексеев Н. Е.
+* Лаптев И. А.
 ---
 # Site
 ---

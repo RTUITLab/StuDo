@@ -10,7 +10,7 @@ services:
       - 5301:5301
 
   front:
-    build: StuDo-Front
+    build: StuDo-Front/Deploy
     ports:
       - 5302:5302
   

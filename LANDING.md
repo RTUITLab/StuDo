@@ -9,9 +9,9 @@ StuDo
         На данный момент проект находится в разработке, в скором времени будет доступен для публичного тестирования.
         Данный сервис реализован на мобильных устройствах и разрабатывается под браузер.
 # Images
-* ![](https://files.rtuitlab.ru/landing_src/studo/1.png)
-* ![](https://files.rtuitlab.ru/landing_src/studo/2.png)
-* ![](https://files.rtuitlab.ru/landing_src/studo/3.png)
+* ![](LANDING/1.png)
+* ![](LANDING/2.png)
+* ![](LANDING/3.png)
 ---
 
 # Videos

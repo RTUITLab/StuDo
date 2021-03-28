@@ -11,7 +11,12 @@ services:
 
       FILL_DB: 'true'
       MIGRATE: 'true'
-      USE_DEBUG_EMAIL_SENDER: 'true'
+      USE_DEBUG_EMAIL_SENDER: 'false'
+
+      EmailSenderOptionsExtended__ConfirmEmailTemplateUrl: https://raw.githubusercontent.com/RTUITLab/StuDo-Back/master/studo/wwwroot/content/email/ConfirmEmail.html
+      EmailSenderOptionsExtended__ResetPasswordTemplateUrl: https://raw.githubusercontent.com/RTUITLab/StuDo-Back/master/studo/wwwroot/content/email/ResetPassword.html
+      EmailSenderOptionsExtended__BaseAddress: ${EMAIL_BASEADDRESS?Provide remote email service (to send emails) base address .env EMAIL_BASEADDRESS}
+      EmailSenderOptionsExtended__Key: ${EMAIL_KEY?Provide remote email service (to send emails) key (for authorizing client) in .env EMAIL_KEY}
 
       FillDbOptions__Firstname: ${DB_FIRSTNAME?Provide default user firstname in .env DB_FIRSTNAME}
       FillDbOptions__Surname: ${DB_SURNAME?Provide default user surname in .env DB_SURNAME}
